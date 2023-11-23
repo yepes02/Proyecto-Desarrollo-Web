@@ -12,7 +12,7 @@ require("conexionDB.php")
     <title>Buscar Productos</title>
 </head>
 <body>
-    <h2>Buscar Productos por Sección</h2>
+    <h2>Buscar Productos</h2>
     <div class="main-content">
         <form class="form-search" method="get" action="result_busqueda.php">
             <input type="search" name="search" placeholder="Buscar ..."> 

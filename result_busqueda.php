@@ -4,20 +4,47 @@ require("conexionDB.php");
 
 $busqueda=$_GET["search"];
 
-$consulta="SELECT * FROM productos WHERE productos like '%$busqueda%'";
-
-$resultado=mysqli_query($conexion,$consulta);
-
-while ($fila = mysqli_fetch_assoc($resultado)) {
-
-    echo "<table><tr><td>";
-    echo $fila['id_producto']."<td>";
-    echo $fila['seccion'] . "<td>";
-    echo $fila['producto']."<td>";
-    echo $fila['origen'] . "<td>";
-    echo $fila['importado'] ."<td>";
-    echo $fila['precio']."<tr><table>";  
-    echo "<br><br>"; 
-   }
-
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/tabla.css">
+    <title>Tabla De Productos</title>
+    
+</head>
+<body>
+    <h2>Tabla De Productos</h2>
+    
+    <table>
+        <tr>
+            <th>ID_PRODUCTO</th>
+            <th>SECCION</th>
+            <th>PRODUCTO</th>
+            <th>ORIGEN</th>
+            <th>IMPORTADO</th>
+            <th>PRECIO</th>
+        </tr>
+
+        <?php
+       $consulta="SELECT * FROM productos WHERE producto like '%$busqueda%'";
+
+       $resultado=mysqli_query($conexion,$consulta);
+       
+       while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+                        
+            echo "<tr>";
+            echo "<td>{$fila['id_producto']}</td>";
+            echo "<td>{$fila['seccion']}</td>";
+            echo "<td>{$fila['producto']}</td>";
+            echo "<td>{$fila['origen']}</td>";
+            echo "<td>{$fila['importado']}</td>";
+            echo "<td>{$fila['precio']}</td>";
+            echo "</tr>";  
+           
+        }
+        ?>
+    </table>
+</body>
+</html>
